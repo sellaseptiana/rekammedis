@@ -1,0 +1,163 @@
+// ----------------------------------------------
+// Layout Style
+// ----------------------------------------------
+
+.page-wrapper {
+  position: relative;
+
+}
+
+.body-wrapper {
+  position: relative;
+
+  >.container-fluid {
+    max-width: $boxed-width;
+    margin: 0 auto;
+    padding: $grid-gutter-width;
+    transition: 0.2s ease-in;
+  }
+}
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.card {
+  margin-bottom: 30px;
+}
+
+.navbar-nav .nav-link {
+  padding: .5rem 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+      flex-direction: column;
+  }
+  #sidebarNav {
+    display: none; /* Initially hide the sidebar on smaller screens */
+  }
+  
+  @media (min-width: 1200px) {
+    #sidebarNav {
+      display: block !important; /* Always show the sidebar on larger screens */
+    }
+  }
+  
+  .navbar-nav .nav-link {
+      padding: .25rem 1rem;
+  }
+
+  .sidebar-nav {
+      display: none;
+  }
+
+  .sidebar-nav.active {
+      display: block;
+  }
+}
+
+
+@include media-breakpoint-down(md) {
+  .body-wrapper {
+    >.container-fluid {
+      padding: 30px 20px;
+    }
+  }
+}
+
+.simplebar-scrollbar:before {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+#main-wrapper[data-layout="vertical"] {
+
+  // Sidebar position
+  &[data-sidebar-position="fixed"] {
+    .left-sidebar {
+      position: fixed;
+      top: 0;
+    }
+  }
+
+  // Header position
+  &[data-header-position="fixed"] {
+    .app-header {
+      position: fixed;
+      z-index: 10;
+    }
+
+    .body-wrapper {
+      >.container-fluid {
+        padding-top: calc(#{$header-height} + 15px);
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  #main-wrapper[data-layout="vertical"] {
+
+    // Fixed Header + Minisidebar
+    &[data-header-position="fixed"][data-sidebartype="mini-sidebar"] {
+      .app-header {
+        width: calc(100%);
+      }
+    }
+
+    // Header position
+    &[data-header-position="fixed"] {
+      .app-header {
+        width: calc(100% - #{$sidebar-width-full});
+      }
+    }
+
+    // Full Sidebar
+    &[data-sidebartype="full"] {
+      .body-wrapper {
+        margin-left: $sidebar-width-full;
+      }
+    }
+
+  }
+}
+
+//
+// Responsive view (below desktop view)
+//
+@media (max-width: 1199px) {
+  #main-wrapper[data-layout="vertical"] {
+
+    &[data-sidebartype="mini-sidebar"],
+    &[data-sidebartype="full"] {
+      .left-sidebar {
+        left: -$sidebar-width-full;
+      }
+
+      &.show-sidebar {
+        .left-sidebar {
+          left: 0;
+        }
+      }
+    }
+
+  }
+}
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000; /* Mengatur warna garis border */
+  background-color: #fff; /* Mengatur warna latar belakang */
+  appearance: none; /* Menghilangkan default appearance checkbox */
+  -webkit-appearance: none; /* Menghilangkan default appearance checkbox untuk Safari */
+  cursor: pointer; /* Mengubah cursor menjadi pointer saat hover */
+}
+
+.custom-checkbox:checked {
+  background-color: #007bff; /* Warna latar belakang saat checkbox dicentang */
+  border-color: #007bff; /* Warna garis border saat checkbox dicentang */
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="%23fff" viewBox="0 0 24 24"%3E%3Cpath stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/%3E%3C/svg%3E');
+  background-position: center;
+  background-repeat: no-repeat;
+}
